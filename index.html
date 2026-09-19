@@ -24,22 +24,28 @@
     <a href="#contact">संपर्क</a>
   </nav>
   <button class="lang" id="langBtn" type="button">EN</button>
-  <button class="menu-btn" id="menuBtn" type="button" aria-label="मुख्य मेनू उघडा" aria-controls="mobileNav" aria-expanded="false">☰</button>
+  <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
 </header>
 
-<div class="menu-overlay" id="menuOverlay"></div>
-<nav class="mobile-nav" id="mobileNav" aria-label="मुख्य मेनू" aria-hidden="true">
-  <div class="mobile-nav-head"><div><strong>प्रेरणा फाउंडेशन</strong><small>सेवेसाठी प्रेरणा • बदलासाठी संकल्प</small></div><button class="menu-close" id="menuClose" type="button" aria-label="मेनू बंद करा">×</button></div>
+<div class="menu-overlay" id="menuOverlay" aria-hidden="true"></div>
+<div class="mobile-nav" id="mobileNav" aria-hidden="true">
+  <div class="mobile-nav-head">
+    <div><strong>प्रेरणा फाउंडेशन</strong><small>सेवेसाठी प्रेरणा • बदलासाठी संकल्प</small></div>
+    <button class="menu-close" id="menuClose" type="button" aria-label="Close menu">×</button>
+  </div>
   <a href="#home">🏠 <span>मुख्यपृष्ठ</span></a>
   <a href="#about">👥 <span>आमच्याबद्दल</span></a>
   <a href="#work">🎯 <span>आमचे कार्यक्षेत्र</span></a>
-  <a href="#gargi">🤝 <span>उपक्रम</span></a>
+  <a href="#work">🤝 <span>उपक्रम</span></a>
   <a href="#updates">📰 <span>माध्यमांमध्ये प्रेरणा</span></a>
   <a href="#gallery">📸 <span>गॅलरी</span></a>
   <a href="#gargi">❤️ <span>मदत करा / योगदान द्या</span></a>
   <a href="#contact">📞 <span>संपर्क</span></a>
-  <div class="mobile-menu-social"><a href="https://instagram.com/prerana_foundation__" target="_blank" rel="noopener">Instagram</a><a href="https://wa.me/919673800689" target="_blank" rel="noopener">WhatsApp</a></div>
-</nav>
+  <div class="mobile-menu-social">
+    <a href="https://instagram.com/prerana_foundation__" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://chat.whatsapp.com/Cx2ioM3IeveLS58DPTsusg?s=cl&p=a&mlu=4&ilr=4" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+</div>
 
 <main id="home">
 <section class="news-feature" id="updates">
@@ -147,18 +153,9 @@
 <div class="lightbox" id="lightbox" aria-hidden="true"><button id="closeLightbox" aria-label="Close">×</button><img id="lightboxImg" src="" alt=""></div>
 
 <script>
-const menuBtn=document.getElementById('menuBtn');
-const mobileNav=document.getElementById('mobileNav');
-const menuClose=document.getElementById('menuClose');
-const menuOverlay=document.getElementById('menuOverlay');
-function setMenu(open){
-  mobileNav?.classList.toggle('open',open);
-  menuOverlay?.classList.toggle('open',open);
-  menuBtn?.setAttribute('aria-expanded',String(open));
-  mobileNav?.setAttribute('aria-hidden',String(!open));
-  document.body.classList.toggle('menu-open',open);
-}
-menuBtn?.addEventListener('click',()=>setMenu(!mobileNav.classList.contains('open')));
+const menuBtn=document.getElementById('menuBtn'),mobileNav=document.getElementById('mobileNav'),menuOverlay=document.getElementById('menuOverlay'),menuClose=document.getElementById('menuClose');
+const setMenu=(open)=>{mobileNav?.classList.toggle('open',open);menuOverlay?.classList.toggle('open',open);mobileNav?.setAttribute('aria-hidden',String(!open));menuOverlay?.setAttribute('aria-hidden',String(!open));document.body.classList.toggle('menu-open',open)};
+menuBtn?.addEventListener('click',()=>setMenu(!mobileNav?.classList.contains('open')));
 menuClose?.addEventListener('click',()=>setMenu(false));
 menuOverlay?.addEventListener('click',()=>setMenu(false));
 mobileNav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
